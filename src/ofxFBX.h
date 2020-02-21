@@ -42,7 +42,7 @@ public:
     
     void earlyUpdate(float aElapsedSeconds=-1);
     void update(float aElapsedSeconds=-1);
-    void lateUpdate();
+    void lateUpdate(bool bForceUpdateMesh=true);
     
     void draw();
     void drawMesh(int aindex);

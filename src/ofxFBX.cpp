@@ -319,10 +319,14 @@ void ofxFBX::update(float aElapsedSeconds) {
 }
 
 //--------------------------------------------------------------
-void ofxFBX::lateUpdate() {
+void ofxFBX::lateUpdate(bool bForceUpdateMesh) {
     
     if( !areAnimationsEnabled() || !hasAnimations() ) {
-        if( bFirstRun ) {
+        if( bFirstRun  || bForceUpdateMesh) {
+            if (bForceUpdateMesh) {
+                setMeshesDirty(true);
+                setMeshVboUpdate(true);
+            }
             FbxTime ttime(FBXSDK_TIME_INFINITE);
             for( auto& node : mAllNodes ) {
                 node->lateUpdate(ttime, currentFbxAnimationLayer, NULL);
